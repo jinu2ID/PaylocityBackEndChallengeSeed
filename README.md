@@ -1,3 +1,22 @@
+## Prerequisites
+- Visual Studio 2022 or later
+- SQL Server LocalDB (included with Visual Studio)
+- .NET 6.0 SDK
+- Entity Framework Core Tools (`dotnet tool install --global dotnet-ef`)
+
+
+## Database Setup
+
+### Option 1: Automatic Setup (Recommended)
+1. Open the solution in Visual Studio
+2. Open Package Manager Console
+3. Run:
+
+### Option 2: Manual Setup
+1. Open SQL Server Management Studio
+2. Connect to `(localdb)\MSSQLLocalDB`
+3. Run the script in `Database/Scripts/CreateDatabase.sql`
+
 # What is this?
 
 A project seed for a C# dotnet API ("PaylocityBenefitsCalculator").  It is meant to get you started on the Paylocity BackEnd Coding Challenge by taking some initial setup decisions away.
