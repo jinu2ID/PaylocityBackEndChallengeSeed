@@ -24,7 +24,7 @@ namespace Api.Data
                 entity.Property(e => e.Salary).HasColumnType("decimal(10,2)");
 
                 entity.HasMany(e => e.Dependents)
-                    .WithOne()
+                    .WithOne(d => d.Employee)
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
