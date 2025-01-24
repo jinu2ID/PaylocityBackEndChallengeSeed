@@ -1,7 +1,6 @@
-﻿namespace Api.Services
+﻿namespace Api.Services;
+
+public interface ICalculationService
 {
-    public interface ICalculationService
-    {
-        decimal GetPaycheck(int employeeId);
-    }
+    Task<decimal> GetPaycheck(int employeeId);
 }
