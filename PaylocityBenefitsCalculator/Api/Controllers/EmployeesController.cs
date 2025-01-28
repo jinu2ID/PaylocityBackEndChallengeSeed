@@ -30,7 +30,7 @@ public class EmployeesController : ControllerBase
     {
         try
         {
-            Employee? employee = await _employeeService.GetByIdAsync(id);
+            Employee? employee = await _employeeService.GetEmployeeByIdAsync(id);
             if (employee != null)
             {
                 GetEmployeeDto employeeDto = employee.ToGetEmployeeDto();
@@ -57,11 +57,11 @@ public class EmployeesController : ControllerBase
     }
 
     [SwaggerOperation(Summary = "Get all employees")]
-    [HttpGet("")]
+    [HttpGet]
     public async Task<ActionResult<ApiResponse<List<GetEmployeeDto>>>> GetAll()
     {
         //task: use a more realistic production approach
-        var employees = await _employeeService.GetAllAsync();
+        var employees = await _employeeService.GetAllEmployeesAsync();
         List<GetEmployeeDto> employeeDtos = employees.Select(e => e.ToGetEmployeeDto()).ToList();
 
         var result = new ApiResponse<List<GetEmployeeDto>>
@@ -106,7 +106,7 @@ public class EmployeesController : ControllerBase
     }
 
     [SwaggerOperation(Summary = "Get employee paycheck")]
-    [HttpPost]
+    [HttpGet("{employeeId}/paycheck")]
     public async Task<ActionResult<ApiResponse<Paycheck>>> GetPaycheck(int employeeId)
     {
         try
@@ -132,7 +132,7 @@ public class EmployeesController : ControllerBase
     }
 
     [SwaggerOperation(Summary = "Get employee paycheck net amount")]
-    [HttpPost]
+    [HttpGet("{employeeId}/paycheck/net")]
     public async Task<ActionResult<ApiResponse<Decimal>>> GetPaycheckNetAmount(int employeeId)
     {
         try

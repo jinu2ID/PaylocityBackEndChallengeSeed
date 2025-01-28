@@ -16,9 +16,9 @@ public class EmployeeService : IEmployeeService
         _repository = repository;
     }
 
-    public async Task<Employee?> GetByIdAsync(int id)
+    public async Task<Employee?> GetEmployeeByIdAsync(int id)
     {
-        Employee? employee = await _repository.GetByIdAsync(id);
+        Employee? employee = await _repository.GetEmployeeByIdAsync(id);
         
         if (employee == null)
         {
@@ -28,9 +28,9 @@ public class EmployeeService : IEmployeeService
         return employee;
     }
 
-    public async Task<List<Employee>> GetAllAsync()
+    public async Task<List<Employee>> GetAllEmployeesAsync()
     {
-        List<Employee> employees = await _repository.GetAllAsync();
+        List<Employee> employees = await _repository.GetAllEmployeesAsync();
         return employees;
     }
 
@@ -61,7 +61,7 @@ public class EmployeeService : IEmployeeService
 
     public async Task<Dependent> AddDependentAsync(CreateNewDependentDto dependentDto)
     {
-        var employee = await _repository.GetByIdAsync(dependentDto.EmployeeId);
+        var employee = await _repository.GetEmployeeByIdAsync(dependentDto.EmployeeId);
         if (employee == null)
         {
             // Add logging here
@@ -101,5 +101,23 @@ public class EmployeeService : IEmployeeService
             Console.WriteLine($"Add new dependent exception: {ex}");
             throw;
         }
+    }
+
+    public async Task<Dependent> GetDependentByIdAsync(int dependentId)
+    {
+        Dependent? dependent = await _repository.GetDependentByIdAsync(dependentId);
+
+        if (dependent == null)
+        {
+            throw new DependentNotFoundException(dependentId);
+        };
+
+        return dependent;
+    }
+
+    public async Task<List<Dependent>> GetAllDependentsAsync()
+    {
+        List<Dependent> dependents = await _repository.GetAllDependentsAsync();
+        return dependents;
     }
 }

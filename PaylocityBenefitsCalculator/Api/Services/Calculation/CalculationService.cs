@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Api.Exceptions;
 using Api.Models;
+using Api.Services.Calculation.Strategy;
 using Api.Services.Employees;
 
 namespace Api.Services.Calculation;
@@ -18,7 +19,7 @@ public class CalculationService : ICalculationService
 
     public async Task<Paycheck> GetPaycheckAsync(int employeeId)
     {
-        Employee? employee = await _employeeService.GetByIdAsync(employeeId);
+        Employee? employee = await _employeeService.GetEmployeeByIdAsync(employeeId);
         if (employee == null)
         {
             throw new EmployeeNotFoundException(employeeId);

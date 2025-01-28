@@ -1,6 +1,8 @@
 using Api.Data;
 using Api.Repositories;
 using Api.Services;
+using Api.Services.Calculation;
+using Api.Services.Calculation.Strategy;
 using Api.Services.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -18,6 +20,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ICalculationService, CalculationService>();
+builder.Services.AddScoped<IBenefitCostStrategy, DefaultBenefitCostStrategy>();
+builder.Services.AddScoped<IBenefitCostStrategyFactory, BenefitCostStrategyFactory>();
 builder.Services.AddScoped<ISystemClock, SystemClock>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

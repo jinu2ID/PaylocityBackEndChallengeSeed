@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Api.Models;
 using Api.Services;
-using Api.Services.Calculation;
+using Api.Services.Calculation.Strategy;
 using Moq;
 using Xunit;
 
@@ -45,7 +45,7 @@ namespace Api.Tests.Services
             // - Per paycheck cost = $12,000 / 26 ≈ 461.54
             // - Net = 2000 - 461.54 = 1538.46
             // We'll verify to 2 decimal places
-            Assert.Equal(1538.46m, Math.Round(netPaycheck, 2));
+            Assert.Equal(1538.46m, netPaycheck, 2);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace Api.Tests.Services
             // - / 26 => per paycheck cost ≈ 538.46
             // - Gross per paycheck = 100000 / 26 ≈ 3846.15
             // - Net per paycheck ≈ 3846.15 - 538.46 = 3307.69
-            Assert.Equal(3307.69m, Math.Round(netPaycheck, 2));
+            Assert.Equal(3307.69m, netPaycheck, 2);
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace Api.Tests.Services
             // 6) Per paycheck cost = 21600 / 26 ≈ 830.77
             // 7) Gross paycheck = 60000 / 26 ≈ 2307.69
             // 8) Net = 2307.69 - 830.77 = 1476.92
-            Assert.Equal(1476.92m, Math.Round(netPaycheck, 2));
+            Assert.Equal(1476.92m, netPaycheck, 2);
         }
 
         [Fact]
@@ -131,7 +131,7 @@ namespace Api.Tests.Services
             // 6) perPaycheckCost = 28800 / 26 ≈ 1107.69
             // 7) grossPerCheck = 60000 / 26 ≈ 2307.69
             // 8) net = 2307.69 - 1107.69 = 1200.00
-            Assert.Equal(1200.00m, Math.Round(netPaycheck, 2));
+            Assert.Equal(1200.00m, netPaycheck, 2);
         }
 
         [Fact]

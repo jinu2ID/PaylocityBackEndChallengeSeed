@@ -1,6 +1,6 @@
 ﻿using Api.Models;
 
-namespace Api.Services.Calculation;
+namespace Api.Services.Calculation.Strategy;
 
 public class BenefitCostStrategyFactory : IBenefitCostStrategyFactory
 {

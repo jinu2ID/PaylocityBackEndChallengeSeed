@@ -13,7 +13,7 @@ public class EmployeeRepository : IEmployeeRepository
         _context = context;
     }
 
-    public async Task<List<Employee>> GetAllAsync()
+    public async Task<List<Employee>> GetAllEmployeesAsync()
     {
         return await _context.Employees
             .Include(e => e.Dependents)
@@ -22,7 +22,7 @@ public class EmployeeRepository : IEmployeeRepository
             .ToListAsync();
     }
 
-    public async Task<List<Employee>> GetPagedAsync(int pageIndex, int pageSize)
+    public async Task<List<Employee>> GetAllEmployeesPagedAsync(int pageIndex, int pageSize)
     {
         return await _context.Employees
             .Include(e => e.Dependents)
@@ -33,7 +33,7 @@ public class EmployeeRepository : IEmployeeRepository
             .ToListAsync();
     }
 
-    public async Task<Employee?> GetByIdAsync(int id)
+    public async Task<Employee?> GetEmployeeByIdAsync(int id)
     {
         return await _context.Employees
             .Include(e => e.Dependents)
@@ -83,5 +83,33 @@ public class EmployeeRepository : IEmployeeRepository
             Console.WriteLine($"Failed to add new employee to Database: {ex}");
             throw;
         }
+    }
+
+    public async Task<Dependent?> GetDependentByIdAsync(int dependentId)
+    {
+        return await _context.Dependents
+            .Include(d => d.Employee)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.Id == dependentId);
+    }
+
+    public async Task<List<Dependent>> GetAllDependentsAsync()
+    {
+        return await _context.Dependents
+            .Include(d => d.Employee)
+            .OrderBy(d => d.Id)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task<List<Dependent>> GetAllDependentsPagedAsync(int pageIndex, int pageSize)
+    {
+        return await _context.Dependents
+            .Include(d => d.Employee)
+            .AsNoTracking()
+            .OrderBy(d => d.Id)
+            .Skip(pageIndex * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
     }
 }
