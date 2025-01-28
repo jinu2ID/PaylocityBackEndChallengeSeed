@@ -1,13 +1,12 @@
 ﻿using Api.Models;
 
-namespace Api.Repositories
+namespace Api.Repositories;
+
+public interface IEmployeeRepository
 {
-    public interface IEmployeeRepository
-    {
-        Task<List<Employee>> GetAllAsync();
-        Task<List<Employee>> GetPagedAsync(int pageIndex, int pageSize);
-        Task<Employee?> GetByIdAsync(int id);
-        Task<Employee?> AddEmployeeAsync(Employee employee);
-        Task<Dependent?> AddDependentAsync(Dependent dependent);
-    }
+    Task<List<Employee>> GetAllAsync();
+    Task<List<Employee>> GetPagedAsync(int pageIndex, int pageSize);
+    Task<Employee?> GetByIdAsync(int id);
+    Task<Employee?> AddEmployeeAsync(Employee employee);
+    Task<Dependent?> AddDependentAsync(Dependent dependent);
 }
