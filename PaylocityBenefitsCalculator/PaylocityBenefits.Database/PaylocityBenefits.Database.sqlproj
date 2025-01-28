@@ -57,9 +57,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Dependents.sql" />
     <Build Include="Tables\Employees.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\SeedData.sql" />
   </ItemGroup>
 </Project>
