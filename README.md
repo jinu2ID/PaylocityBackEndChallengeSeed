@@ -17,7 +17,7 @@
 
    `sqlcmd -S (localdb)\MSSQLLocalDB -d PaylocityBenefits -i "SeedData.sql"`
 
-   This will create a local database, (localdb)\\MSSQLLocalDB.
+   This will create a local database, (localdb)\\MSSQLLocalDB, with some records for the Employee and Dependents tables.
 
    The default connection string for the DB is set in `\PaylocityBenefitsCalculator\Api\AppSettings.json`    
 6. You can check to see if the database has tables correctly populated using SQL Server Management Studio
